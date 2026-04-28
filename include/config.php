@@ -3,7 +3,8 @@ define('DB_SERVER', getenv('DB_SERVER') ?: 'localhost');
 define('DB_USER',   getenv('DB_USER')   ?: 'root');
 define('DB_PASS',   getenv('DB_PASS')   ?: '');
 define('DB_NAME',   getenv('DB_NAME')   ?: 'myhmsdb');
-$con = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
+define('DB_PORT',   (int)(getenv('DB_PORT') ?: 3306));
+$con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME, DB_PORT);
 // Check connection
 if (mysqli_connect_errno())
 {
