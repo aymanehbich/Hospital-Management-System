@@ -67,16 +67,16 @@ CREATE TABLE `appointmenttb` (
 --
 
 INSERT INTO `appointmenttb` (`pid`, `ID`, `fname`, `lname`, `gender`, `email`, `contact`, `doctor`, `docFees`, `appdate`, `apptime`, `userStatus`, `doctorStatus`) VALUES
-(4, 1, 'Kishan', 'Lal', 'Male', 'aymanehbich@gmail.com', '8838489464', 'Ganesh', 550, '2020-02-14', '10:00:00', 1, 0),
-(4, 2, 'Kishan', 'Lal', 'Male', 'aymanehbich@gmail.com', '8838489464', 'Dinesh', 700, '2020-02-28', '10:00:00', 0, 1),
-(4, 3, 'Kishan', 'Lal', 'Male', 'aymanehbich@gmail.com', '8838489464', 'Amit', 1000, '2020-02-19', '03:00:00', 0, 1),
+(4, 1, 'Ahmed', 'Benali', 'Male', 'ahmed@university.ma', '0600000001', 'Ganesh', 550, '2020-02-14', '10:00:00', 1, 0),
+(4, 2, 'Ahmed', 'Benali', 'Male', 'ahmed@university.ma', '0600000001', 'Dinesh', 700, '2020-02-28', '10:00:00', 0, 1),
+(4, 3, 'Ahmed', 'Benali', 'Male', 'ahmed@university.ma', '0600000001', 'Amit', 1000, '2020-02-19', '03:00:00', 0, 1),
 (11, 4, 'Shraddha', 'Kapoor', 'Female', 'shraddha@gmail.com', '9768946252', 'ashok', 500, '2020-02-29', '20:00:00', 1, 1),
-(4, 5, 'Kishan', 'Lal', 'Male', 'aymanehbich@gmail.com', '8838489464', 'Dinesh', 700, '2020-02-28', '12:00:00', 1, 1),
-(4, 6, 'Kishan', 'Lal', 'Male', 'aymanehbich@gmail.com', '8838489464', 'Ganesh', 550, '2020-02-26', '15:00:00', 0, 1),
+(4, 5, 'Ahmed', 'Benali', 'Male', 'ahmed@university.ma', '0600000001', 'Dinesh', 700, '2020-02-28', '12:00:00', 1, 1),
+(4, 6, 'Ahmed', 'Benali', 'Male', 'ahmed@university.ma', '0600000001', 'Ganesh', 550, '2020-02-26', '15:00:00', 0, 1),
 (2, 8, 'Alia', 'Bhatt', 'Female', 'alia@gmail.com', '8976897689', 'Ganesh', 550, '2020-03-21', '10:00:00', 1, 1),
 (5, 9, 'Gautam', 'Shankararam', 'Male', 'gautam@gmail.com', '9070897653', 'Ganesh', 550, '2020-03-19', '20:00:00', 1, 0),
-(4, 10, 'Kishan', 'Lal', 'Male', 'aymanehbich@gmail.com', '8838489464', 'Ganesh', 550, '0000-00-00', '14:00:00', 1, 0),
-(4, 11, 'Kishan', 'Lal', 'Male', 'aymanehbich@gmail.com', '8838489464', 'Dinesh', 700, '2020-03-27', '15:00:00', 1, 1),
+(4, 10, 'Ahmed', 'Benali', 'Male', 'ahmed@university.ma', '0600000001', 'Ganesh', 550, '0000-00-00', '14:00:00', 1, 0),
+(4, 11, 'Ahmed', 'Benali', 'Male', 'ahmed@university.ma', '0600000001', 'Dinesh', 700, '2020-03-27', '15:00:00', 1, 1),
 (9, 12, 'William', 'Blake', 'Male', 'william@gmail.com', '8683619153', 'Kumar', 800, '2020-03-26', '12:00:00', 1, 1),
 (9, 13, 'William', 'Blake', 'Male', 'william@gmail.com', '8683619153', 'Tiwary', 450, '2020-03-26', '14:00:00', 1, 1);
 
@@ -161,7 +161,7 @@ INSERT INTO `patreg` (`pid`, `fname`, `lname`, `gender`, `email`, `contact`, `pa
 (1, 'Ram', 'Kumar', 'Male', 'ram@gmail.com', '9876543210', 'ram123', 'ram123'),
 (2, 'Alia', 'Bhatt', 'Female', 'alia@gmail.com', '8976897689', 'alia123', 'alia123'),
 (3, 'Shahrukh', 'khan', 'Male', 'shahrukh@gmail.com', '8976898463', 'shahrukh123', 'shahrukh123'),
-(4, 'Kishan', 'Lal', 'Male', 'aymanehbich@gmail.com', '8838489464', 'kishan123', 'kishan123'),
+(4, 'Ahmed', 'Benali', 'Male', 'ahmed@university.ma', '0600000001', 'ahmed123', 'ahmed123'),
 (5, 'Gautam', 'Shankararam', 'Male', 'gautam@gmail.com', '9070897653', 'gautam123', 'gautam123'),
 (6, 'Sushant', 'Singh', 'Male', 'sushant@gmail.com', '9059986865', 'sushant123', 'sushant123'),
 (7, 'Nancy', 'Deborah', 'Female', 'nancy@gmail.com', '9128972454', 'nancy123', 'nancy123'),
