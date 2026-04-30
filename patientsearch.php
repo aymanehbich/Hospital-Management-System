@@ -8,6 +8,8 @@
 <body>
 <?php
 include("newfunc.php");
+require_once('include/auth_guard.php');
+require_receptionist();
 if(isset($_POST['patient_search_submit']))
 {
 	$contact=$_POST['patient_contact'];

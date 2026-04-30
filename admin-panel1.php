@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php
 include('newfunc.php');
+require_once('include/auth_guard.php');
+require_receptionist();
 
 if(isset($_POST['docsub']))
 {
@@ -281,11 +283,11 @@ if(isset($_POST['docsub1']))
                       $docFees = $row['docFees'];
                       
                       echo "<tr>
-                        <td>$username</td>
-                        <td>$spec</td>
-                        <td>$email</td>
-                        <td>$password</td>
-                        <td>$docFees</td>
+                        <td>".htmlspecialchars($username,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($spec,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($email,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($password,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($docFees,ENT_QUOTES,'UTF-8')."</td>
                       </tr>";
                     }
 
@@ -333,13 +335,13 @@ if(isset($_POST['docsub1']))
                       $password = $row['password'];
                       
                       echo "<tr>
-                        <td>$pid</td>
-                        <td>$fname</td>
-                        <td>$lname</td>
-                        <td>$gender</td>
-                        <td>$email</td>
-                        <td>$contact</td>
-                        <td>$password</td>
+                        <td>".htmlspecialchars($pid,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($fname,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($lname,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($gender,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($email,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($contact,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($password,ENT_QUOTES,'UTF-8')."</td>
                       </tr>";
                     }
 
@@ -392,16 +394,16 @@ if(isset($_POST['docsub1']))
 
                       
                       echo "<tr>
-                        <td>$doctor</td>
-                        <td>$pid</td>
-                        <td>$ID</td>
-                        <td>$fname</td>
-                        <td>$lname</td>
-                        <td>$appdate</td>
-                        <td>$apptime</td>
-                        <td>$disease</td>
-                        <td>$allergy</td>
-                        <td>$pres</td>
+                        <td>".htmlspecialchars($doctor,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($pid,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($ID,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($fname,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($lname,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($appdate,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($apptime,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($disease,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($allergy,ENT_QUOTES,'UTF-8')."</td>
+                        <td>".htmlspecialchars($pres,ENT_QUOTES,'UTF-8')."</td>
                       </tr>";
                     }
 
@@ -453,17 +455,17 @@ if(isset($_POST['docsub1']))
                     while ($row = mysqli_fetch_array($result)){
                   ?>
                       <tr>
-                        <td><?php echo $row['ID'];?></td>
-                        <td><?php echo $row['pid'];?></td>
-                        <td><?php echo $row['fname'];?></td>
-                        <td><?php echo $row['lname'];?></td>
-                        <td><?php echo $row['gender'];?></td>
-                        <td><?php echo $row['email'];?></td>
-                        <td><?php echo $row['contact'];?></td>
-                        <td><?php echo $row['doctor'];?></td>
-                        <td><?php echo $row['docFees'];?></td>
-                        <td><?php echo $row['appdate'];?></td>
-                        <td><?php echo $row['apptime'];?></td>
+                        <td><?php echo htmlspecialchars($row['ID'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['pid'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['fname'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['lname'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['gender'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['email'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['contact'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['doctor'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['docFees'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['appdate'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['apptime'],ENT_QUOTES,'UTF-8');?></td>
                         <td>
                     <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
                     {
@@ -567,10 +569,10 @@ if(isset($_POST['docsub1']))
                       #$contact = $row['contact'];
                   ?>
                       <tr>
-                        <td><?php echo $row['name'];?></td>
-                        <td><?php echo $row['email'];?></td>
-                        <td><?php echo $row['contact'];?></td>
-                        <td><?php echo $row['message'];?></td>
+                        <td><?php echo htmlspecialchars($row['name'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['email'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['contact'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['message'],ENT_QUOTES,'UTF-8');?></td>
                       </tr>
                     <?php } ?>
                 </tbody>

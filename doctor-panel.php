@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<?php 
+<?php
 include('func1.php');
+require_once('include/auth_guard.php');
+require_doctor();
 $doctor = $_SESSION['dname'];
 if(isset($_GET['cancel']))
   {
@@ -100,7 +102,7 @@ if(isset($_GET['cancel']))
   </style>
   <body style="padding-top:50px;">
    <div class="container-fluid" style="margin-top:50px;">
-    <h3 style = "margin-left: 40%; padding-bottom: 20px;font-family:'IBM Plex Sans', sans-serif;"> Welcome &nbsp<?php echo $_SESSION['dname'] ?>  </h3>
+    <h3 style = "margin-left: 40%; padding-bottom: 20px;font-family:'IBM Plex Sans', sans-serif;"> Welcome &nbsp<?php echo htmlspecialchars($_SESSION['dname'],ENT_QUOTES,'UTF-8') ?>  </h3>
     <div class="row">
   <div class="col-md-4" style="max-width:18%;margin-top: 3%;">
     <div class="list-group" id="list-tab" role="tablist">
@@ -185,15 +187,15 @@ if(isset($_GET['cancel']))
                     while ($row = mysqli_fetch_array($result)){
                       ?>
                       <tr>
-                      <td><?php echo $row['pid'];?></td>
-                        <td><?php echo $row['ID'];?></td>
-                        <td><?php echo $row['fname'];?></td>
-                        <td><?php echo $row['lname'];?></td>
-                        <td><?php echo $row['gender'];?></td>
-                        <td><?php echo $row['email'];?></td>
-                        <td><?php echo $row['contact'];?></td>
-                        <td><?php echo $row['appdate'];?></td>
-                        <td><?php echo $row['apptime'];?></td>
+                      <td><?php echo htmlspecialchars($row['pid'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['ID'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['fname'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['lname'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['gender'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['email'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['contact'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['appdate'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['apptime'],ENT_QUOTES,'UTF-8');?></td>
                         <td>
                     <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
                     {
@@ -215,7 +217,7 @@ if(isset($_GET['cancel']))
                         { ?>
 
 													
-	                        <a href="doctor-panel.php?ID=<?php echo $row['ID']?>&cancel=update" 
+	                        <a href="doctor-panel.php?ID=<?php echo htmlspecialchars($row['ID'],ENT_QUOTES,'UTF-8')?>&cancel=update"
                               onClick="return confirm('Are you sure you want to cancel this appointment ?')"
                               title="Cancel Appointment" tooltip-placement="top" tooltip="Remove"><button class="btn btn-danger">Cancel</button></a>
 	                        <?php } else {
@@ -230,7 +232,7 @@ if(isset($_GET['cancel']))
                         <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
                         { ?>
 
-                        <a href="prescribe.php?pid=<?php echo $row['pid']?>&ID=<?php echo $row['ID']?>&fname=<?php echo $row['fname']?>&lname=<?php echo $row['lname']?>&appdate=<?php echo $row['appdate']?>&apptime=<?php echo $row['apptime']?>"
+                        <a href="prescribe.php?pid=<?php echo htmlspecialchars($row['pid'],ENT_QUOTES,'UTF-8')?>&ID=<?php echo htmlspecialchars($row['ID'],ENT_QUOTES,'UTF-8')?>&fname=<?php echo htmlspecialchars($row['fname'],ENT_QUOTES,'UTF-8')?>&lname=<?php echo htmlspecialchars($row['lname'],ENT_QUOTES,'UTF-8')?>&appdate=<?php echo htmlspecialchars($row['appdate'],ENT_QUOTES,'UTF-8')?>&apptime=<?php echo htmlspecialchars($row['apptime'],ENT_QUOTES,'UTF-8')?>"
                         tooltip-placement="top" tooltip="Remove" title="prescribe">
                         <button class="btn btn-success">Prescibe</button></a>
                         <?php } else {
@@ -283,16 +285,16 @@ if(isset($_GET['cancel']))
                     while ($row = mysqli_fetch_array($result)){
                   ?>
                       <tr>
-                        <td><?php echo $row['pid'];?></td>
-                        <td><?php echo $row['fname'];?></td>
-                        <td><?php echo $row['lname'];?></td>
-                        <td><?php echo $row['ID'];?></td>
-                        
-                        <td><?php echo $row['appdate'];?></td>
-                        <td><?php echo $row['apptime'];?></td>
-                        <td><?php echo $row['disease'];?></td>
-                        <td><?php echo $row['allergy'];?></td>
-                        <td><?php echo $row['prescription'];?></td>
+                        <td><?php echo htmlspecialchars($row['pid'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['fname'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['lname'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['ID'],ENT_QUOTES,'UTF-8');?></td>
+
+                        <td><?php echo htmlspecialchars($row['appdate'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['apptime'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['disease'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['allergy'],ENT_QUOTES,'UTF-8');?></td>
+                        <td><?php echo htmlspecialchars($row['prescription'],ENT_QUOTES,'UTF-8');?></td>
                     
                       </tr>
                     <?php }

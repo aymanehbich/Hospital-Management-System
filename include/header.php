@@ -35,7 +35,7 @@
 									<?php $query=mysqli_query($con,"select fullName from users where id='".$_SESSION['id']."'");
 while($row=mysqli_fetch_array($query))
 {
-	echo $row['fullName'];
+	echo htmlspecialchars($row['fullName'],ENT_QUOTES,'UTF-8');
 }
 									?> <i class="ti-angle-down"></i></i></span>
 								</a>

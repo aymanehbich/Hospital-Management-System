@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once('include/config.php');
+require_once('include/auth_guard.php');
+require_doctor();
 if(isset($_POST['search_submit'])){
   $contact=$_POST['contact'];
   $docname = $_SESSION['dname'];

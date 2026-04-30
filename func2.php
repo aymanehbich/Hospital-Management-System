@@ -10,9 +10,11 @@ if(isset($_POST['patsub1'])){
 	$password=$_POST['password'];
   $cpassword=$_POST['cpassword'];
   if($password==$cpassword){
-  	$query="insert into patreg(fname,lname,gender,email,contact,password,cpassword) values ('$fname','$lname','$gender','$email','$contact','$password','$cpassword');";
-    $result=mysqli_query($con,$query);
-    if($result){
+    $hashed=password_hash($password,PASSWORD_BCRYPT);
+  	$stmt=$pdo->prepare("insert into patreg(fname,lname,gender,email,contact,password,cpassword) values (?,?,?,?,?,?,?)");
+    $stmt->execute([$fname,$lname,$gender,$email,$contact,$hashed,$hashed]);
+    if($stmt->rowCount()>0){
+        session_regenerate_id(true);
         $_SESSION['username'] = $_POST['fname']." ".$_POST['lname'];
         $_SESSION['fname'] = $_POST['fname'];
         $_SESSION['lname'] = $_POST['lname'];
@@ -22,10 +24,11 @@ if(isset($_POST['patsub1'])){
         header("Location:admin-panel.php");
     } 
 
-    $query1 = "select * from patreg;";
-    $result1 = mysqli_query($con,$query1);
-    if($result1){
-      $_SESSION['pid'] = $row['pid'];
+    $stmt2=$pdo->prepare("select pid from patreg where email=?");
+    $stmt2->execute([$email]);
+    $newRow=$stmt2->fetch(PDO::FETCH_ASSOC);
+    if($newRow){
+      $_SESSION['pid'] = $newRow['pid'];
     }
 
   }
@@ -37,9 +40,9 @@ if(isset($_POST['update_data']))
 {
 	$contact=$_POST['contact'];
 	$status=$_POST['status'];
-	$query="update appointmenttb set payment='$status' where contact='$contact';";
-	$result=mysqli_query($con,$query);
-	if($result)
+	$stmt=$pdo->prepare("update appointmenttb set payment=? where contact=?");
+	$stmt->execute([$status,$contact]);
+	if($stmt->rowCount()>=0)
 		header("Location:updated.php");
 }
 
@@ -62,9 +65,9 @@ if(isset($_POST['update_data']))
 if(isset($_POST['doc_sub']))
 {
 	$name=$_POST['name'];
-	$query="insert into doctb(name)values('$name')";
-	$result=mysqli_query($con,$query);
-	if($result)
+	$stmt=$pdo->prepare("insert into doctb(name)values(?)");
+	$stmt->execute([$name]);
+	if($stmt->rowCount()>0)
 		header("Location:adddoc.php");
 }
 function display_admin_panel(){

@@ -4,15 +4,16 @@ require_once('include/config.php');
 if(isset($_POST['adsub'])){
 	$username=$_POST['username1'];
 	$password=$_POST['password2'];
-	$query="select * from admintb where username='$username' and password='$password';";
-	$result=mysqli_query($con,$query);
-	if(mysqli_num_rows($result)==1)
+	$stmt=$pdo->prepare("select * from admintb where username=?");
+	$stmt->execute([$username]);
+	$row=$stmt->fetch(PDO::FETCH_ASSOC);
+	if($row && password_verify($password,$row['password']))
 	{
+		session_regenerate_id(true);
 		$_SESSION['username']=$username;
 		header("Location:admin-panel1.php");
 	}
 	else
-		// header("Location:error2.php");
 		echo("<script>alert('Invalid Username or Password. Try Again!');
           window.location.href = 'index.php';</script>");
 }
@@ -20,9 +21,9 @@ if(isset($_POST['update_data']))
 {
 	$contact=$_POST['contact'];
 	$status=$_POST['status'];
-	$query="update appointmenttb set payment='$status' where contact='$contact';";
-	$result=mysqli_query($con,$query);
-	if($result)
+	$stmt=$pdo->prepare("update appointmenttb set payment=? where contact=?");
+	$stmt->execute([$status,$contact]);
+	if($stmt->rowCount()>=0)
 		header("Location:updated.php");
 }
 
@@ -45,8 +46,8 @@ function display_docs()
 if(isset($_POST['doc_sub']))
 {
 	$name=$_POST['name'];
-	$query="insert into doctb(name)values('$name')";
-	$result=mysqli_query($con,$query);
-	if($result)
+	$stmt=$pdo->prepare("insert into doctb(name)values(?)");
+	$stmt->execute([$name]);
+	if($stmt->rowCount()>0)
 		header("Location:adddoc.php");
 }
