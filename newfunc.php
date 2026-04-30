@@ -1,5 +1,5 @@
 <?php
-// session_start();
+if (session_status() === PHP_SESSION_NONE) session_start();
 require_once('include/config.php');
 // if(isset($_POST['submit'])){
 //  $username=$_POST['username'];

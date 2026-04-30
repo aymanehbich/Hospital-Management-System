@@ -2,8 +2,6 @@
 include('newfunc.php');
 require_once('include/auth_guard.php');
 require_receptionist();
-?>
-<!DOCTYPE html>
 
 if(isset($_POST['docsub']))
 {
@@ -34,9 +32,8 @@ if(isset($_POST['docsub1']))
     echo "<script>alert('Unable to delete!');</script>";
   }
 }
-
-
 ?>
+<!DOCTYPE html>
 <html lang="en">
   <head>
 
