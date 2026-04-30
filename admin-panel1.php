@@ -1,8 +1,9 @@
-<!DOCTYPE html>
 <?php
 include('newfunc.php');
 require_once('include/auth_guard.php');
 require_receptionist();
+?>
+<!DOCTYPE html>
 
 if(isset($_POST['docsub']))
 {

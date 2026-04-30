@@ -1,8 +1,9 @@
-<!DOCTYPE html>
 <?php
 include('func1.php');
 require_once('include/auth_guard.php');
 require_doctor();
+?>
+<!DOCTYPE html>
 $pid='';
 $ID='';
 $appdate='';

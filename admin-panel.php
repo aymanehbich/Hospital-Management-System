@@ -1,9 +1,10 @@
-<!DOCTYPE html>
 <?php
 include('func.php');
 include('newfunc.php');
 require_once('include/auth_guard.php');
 require_patient();
+?>
+<!DOCTYPE html>
 
 
   $pid = $_SESSION['pid'];

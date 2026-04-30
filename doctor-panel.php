@@ -1,8 +1,9 @@
-<!DOCTYPE html>
 <?php
 include('func1.php');
 require_once('include/auth_guard.php');
 require_doctor();
+?>
+<!DOCTYPE html>
 $doctor = $_SESSION['dname'];
 if(isset($_GET['cancel']))
   {
