@@ -1,7 +1,13 @@
 <?php
 session_start();
 require_once('include/config.php');
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 if(isset($_POST['docsub1'])){
+    if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+        http_response_code(403); exit('Request forbidden: invalid CSRF token.');
+    }
 	$dname=$_POST['username3'];
 	$dpass=$_POST['password3'];
 	$stmt=$pdo->prepare("select * from doctb where username=?");
