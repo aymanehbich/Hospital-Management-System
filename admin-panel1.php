@@ -5,16 +5,13 @@ require_receptionist();
 
 if(isset($_POST['docsub']))
 {
-  if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-    http_response_code(403); exit('Request forbidden: invalid CSRF token.');
-  }
   $doctor=$_POST['doctor'];
-  $dpassword=password_hash($_POST['dpassword'], PASSWORD_BCRYPT);
+  $dpassword=$_POST['dpassword'];
   $demail=$_POST['demail'];
   $spec=$_POST['special'];
   $docFees=$_POST['docFees'];
-  $stmt=$pdo->prepare("insert into doctb(username,password,email,spec,docFees)values(?,?,?,?,?)");
-  $result=$stmt->execute([$doctor,$dpassword,$demail,$spec,$docFees]);
+  $query="insert into doctb(username,password,email,spec,docFees)values('$doctor','$dpassword','$demail','$spec','$docFees')";
+  $result=mysqli_query($con,$query);
   if($result)
     {
       echo "<script>alert('Doctor added successfully!');</script>";
@@ -24,12 +21,9 @@ if(isset($_POST['docsub']))
 
 if(isset($_POST['docsub1']))
 {
-  if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-    http_response_code(403); exit('Request forbidden: invalid CSRF token.');
-  }
   $demail=$_POST['demail'];
-  $stmt=$pdo->prepare("delete from doctb where email=?");
-  $result=$stmt->execute([$demail]);
+  $query="delete from doctb where email='$demail';";
+  $result=mysqli_query($con,$query);
   if($result)
     {
       echo "<script>alert('Doctor removed successfully!');</script>";
@@ -496,7 +490,6 @@ if(isset($_POST['docsub1']))
 
       <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
         <form class="form-group" method="post" action="admin-panel1.php">
-          <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8'); ?>">
           <div class="row">
                   <div class="col-md-4"><label>Doctor Name:</label></div>
                   <div class="col-md-8"><input type="text" class="form-control" name="doctor" onkeydown="return alphaOnly(event);" required></div><br><br>
@@ -527,12 +520,11 @@ if(isset($_POST['docsub1']))
 
       <div class="tab-pane fade" id="list-settings1" role="tabpanel" aria-labelledby="list-settings1-list">
         <form class="form-group" method="post" action="admin-panel1.php">
-          <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8'); ?>">
           <div class="row">
-
+          
                   <div class="col-md-4"><label>Email ID:</label></div>
                   <div class="col-md-8"><input type="email"  class="form-control" name="demail" required></div><br><br>
-
+                  
                 </div>
           <input type="submit" name="docsub1" value="Delete Doctor" class="btn btn-primary" onclick="confirm('do you really want to delete?')">
         </form>

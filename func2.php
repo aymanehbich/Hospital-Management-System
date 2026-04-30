@@ -2,17 +2,13 @@
 session_start();
 require_once('include/config.php');
 if(isset($_POST['patsub1'])){
-    if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-        http_response_code(403); exit('Request forbidden: invalid CSRF token.');
-    }
-    // Strip null bytes and path separators to prevent path traversal
-    $fname    = basename(str_replace("\0", '', $_POST['fname']));
-    $lname    = basename(str_replace("\0", '', $_POST['lname']));
-    $gender   = basename(str_replace("\0", '', $_POST['gender']));
-    $email    = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
-    $contact  = preg_replace('/[^0-9]/', '', $_POST['contact']);
-    $password = $_POST['password'];
-    $cpassword= $_POST['cpassword'];
+	$fname=$_POST['fname'];
+  $lname=$_POST['lname'];
+  $gender=$_POST['gender'];
+  $email=$_POST['email'];
+  $contact=$_POST['contact'];
+	$password=$_POST['password'];
+  $cpassword=$_POST['cpassword'];
   if($password==$cpassword){
     $hashed=password_hash($password,PASSWORD_BCRYPT);
   	$stmt=$pdo->prepare("insert into patreg(fname,lname,gender,email,contact,password,cpassword) values (?,?,?,?,?,?,?)");
