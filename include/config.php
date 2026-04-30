@@ -1,10 +1,8 @@
 <?php
 // Cookie security — must be set before session_start()
-if (session_status() === PHP_SESSION_NONE) {
-    ini_set('session.cookie_httponly', 1);
-    ini_set('session.cookie_secure', 1);
-    ini_set('session.cookie_samesite', 'Strict');
-}
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+ini_set('session.cookie_samesite', 'Strict');
 
 // Security headers — sent on every response
 header('X-Frame-Options: DENY');
